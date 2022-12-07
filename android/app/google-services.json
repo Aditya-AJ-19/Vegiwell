@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "420552800873",
+    "project_id": "vegiwell-2",
+    "storage_bucket": "vegiwell-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420552800873:android:86372617c4eda35408c0f8",
+        "android_client_info": {
+          "package_name": "com.example.vegiwell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420552800873-u9ta4ljts64e4l2qn9tohn06e4ko6la7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjRp1yeNHbYrKTkYFIPk6s6KnNUky3As0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "420552800873-u9ta4ljts64e4l2qn9tohn06e4ko6la7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
