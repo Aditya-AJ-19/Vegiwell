@@ -1,4 +1,3 @@
-// import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,12 +30,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final CarouselController cc = Get.find();
     return Scaffold(
+      backgroundColor: AppTheme.background,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppTheme.green,
         leading: Icon(
           Icons.location_on,
           size: responsiveHeight(40),
-          color: Colors.orange,
+          color: AppTheme.darkBlue,
         ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,20 +45,22 @@ class HomePage extends StatelessWidget {
             Text(
               "Home",
               style: TextStyle(
-                  color: Colors.black,
-                  fontSize: responsiveHeight(20),
-                  fontFamily: 'Inter',
-                  height: 1,
-                  fontWeight: FontWeight.w900),
+                color: AppTheme.darkBlue,
+                fontSize: responsiveHeight(20),
+                fontFamily: 'Inter',
+                height: 1,
+                fontWeight: FontWeight.w900,
+              ),
             ),
             Text(
               "${userd['address']}",
               style: TextStyle(
-                  color: Colors.black,
-                  height: 1.25,
-                  fontSize: responsiveHeight(14),
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w400),
+                color: AppTheme.darkBlue,
+                height: 1.25,
+                fontSize: responsiveHeight(14),
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w400,
+              ),
               overflow: TextOverflow.ellipsis,
             ),
           ],
@@ -68,7 +70,7 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.only(right: responsiveWidth(10)),
             child: Icon(
               CustomIcons.bell,
-              color: Colors.orange,
+              color: AppTheme.darkBlue,
               size: responsiveHeight(30),
             ),
           )
@@ -116,6 +118,7 @@ class HomePage extends StatelessWidget {
                   "CATEGORIES",
                   style: TextStyle(
                     fontSize: responsiveHeight(25),
+                    color: AppTheme.darkBlue,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -190,6 +193,7 @@ class HomePage extends StatelessWidget {
                   "Latest Product",
                   style: TextStyle(
                     fontSize: responsiveHeight(25),
+                    color: AppTheme.darkBlue,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -416,11 +420,11 @@ class _MainHomePageState extends State<MainHomePage> {
       // body: const HomePage(),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
-        // backgroundColor: AppTheme.bottomNavigationBar,
         backgroundColor: Colors.white,
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppTheme.orange,
+        selectedItemColor: AppTheme.green,
+        unselectedItemColor: Colors.grey.shade300,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vegiwell/Models/product_model.dart';
 import 'package:vegiwell/Utils/size_config.dart';
+import 'package:vegiwell/Utils/style.dart';
 import 'package:vegiwell/controllers/auth_controller.dart';
 import 'package:vegiwell/controllers/cart_controller.dart';
 
@@ -16,14 +17,25 @@ class ProductDetails extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFEFEFEF),
       appBar: AppBar(
-        elevation: 0,
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.white,
+        centerTitle: true,
+        elevation: 2,
+        foregroundColor: Colors.white,
+        backgroundColor: AppTheme.green,
+        title: SizedBox(
+          width: responsiveHeight(140),
+          height: responsiveHeight(35),
+          child: Image.asset(
+            'assets/Images/vegiwellname.png',
+            filterQuality: FilterQuality.high,
+            fit: BoxFit.contain,
+            color: Colors.white,
+          ),
+        ),
         actions: [
           Padding(
               padding: EdgeInsets.symmetric(horizontal: responsiveHeight(20)),
               child: InkWell(
-                  onTap: () async{
+                  onTap: () async {
                     cartcontroller.addProductToCart(pd);
                     await PhoneAuthController().getUser();
                   },
@@ -219,7 +231,7 @@ class ProductDetails extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: const Color(0xFFF16E35),
+        backgroundColor: AppTheme.green,
         onPressed: () {},
         icon: const Icon(CupertinoIcons.cart),
         label: Text(

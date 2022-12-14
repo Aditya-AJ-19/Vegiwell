@@ -23,19 +23,35 @@ class _CheckOutDetailsState extends State<CheckOutDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   title: Text(
+      //     "Checkout Details",
+      //     style: TextStyle(
+      //       color: Colors.black,
+      //       fontFamily: "Inter",
+      //       fontSize: responsiveHeight(19),
+      //       fontWeight: FontWeight.w600,
+      //     ),
+      //   ),
+      //   centerTitle: true,
+      //   backgroundColor: AppTheme.orange2,
+      //   elevation: 0,
+      // ),
       appBar: AppBar(
-        title: Text(
-          "Checkout Details",
-          style: TextStyle(
-            color: Colors.black,
-            fontFamily: "Inter",
-            fontSize: responsiveHeight(19),
-            fontWeight: FontWeight.w600,
+        elevation: 2,
+        backgroundColor: AppTheme.green,
+        foregroundColor: Colors.white,
+        centerTitle: true,
+        title: SizedBox(
+          width: responsiveHeight(140),
+          height: responsiveHeight(35),
+          child: Image.asset(
+            'assets/Images/vegiwellname.png',
+            filterQuality: FilterQuality.high,
+            fit: BoxFit.contain,
+            color: Colors.white,
           ),
         ),
-        centerTitle: true,
-        backgroundColor: AppTheme.orange2,
-        elevation: 0,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: responsiveHeight(20)),
@@ -241,7 +257,10 @@ class _CheckOutDetailsState extends State<CheckOutDetails> {
               child: Ink(
                 decoration: BoxDecoration(
                     gradient: const LinearGradient(
-                      colors: [Color(0xFFFCB930), Color(0xFFF16E35)],
+                      colors: [
+                        AppTheme.green,
+                        AppTheme.lightGreen,
+                      ],
                     ),
                     borderRadius: BorderRadius.circular(20)),
                 child: Container(

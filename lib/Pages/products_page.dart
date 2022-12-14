@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:vegiwell/Models/product_model.dart';
 import 'package:vegiwell/Utils/size_config.dart';
 import 'package:vegiwell/Pages/product_details.dart';
+import 'package:vegiwell/Utils/style.dart';
 
 class ProductPage extends StatefulWidget {
   String cate;
@@ -23,9 +24,27 @@ class _ProductPageState extends State<ProductPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        elevation: 0,
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.transparent,
+        elevation: 2,
+        backgroundColor: AppTheme.green,
+        foregroundColor: Colors.white,
+        centerTitle: true,
+        // title: Text(
+        //   "Vegiwell",
+        //   style: TextStyle(
+        //       fontSize: responsiveHeight(25),
+        //       fontWeight: FontWeight.bold,
+        //       fontFamily: "Inter"),
+        // ),
+        title: SizedBox(
+          width: responsiveHeight(140),
+          height: responsiveHeight(35),
+          child: Image.asset(
+            'assets/Images/vegiwellname.png',
+            filterQuality: FilterQuality.high,
+            fit: BoxFit.contain,
+            color: Colors.white,
+          ),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.only(
@@ -90,7 +109,7 @@ Widget card(ProductData pd) {
           padding: EdgeInsets.symmetric(vertical: responsiveHeight(15)),
           decoration: BoxDecoration(
             border: Border.all(
-                color: const Color.fromARGB(255, 14, 156, 35),
+                color: AppTheme.green,
                 width: responsiveHeight(1.42)),
             borderRadius: BorderRadius.circular(responsiveHeight(20)),
             color: Colors.white,

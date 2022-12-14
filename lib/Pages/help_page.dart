@@ -11,13 +11,18 @@ class HelpPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.orange,
-        title: Text(
-          "About Us",
-          style: TextStyle(
-            fontFamily: "Inter",
-            fontSize: responsiveHeight(20),
+        elevation: 2,
+        backgroundColor: AppTheme.green,
+        foregroundColor: Colors.white,
+        centerTitle: true,
+        title: SizedBox(
+          width: responsiveHeight(140),
+          height: responsiveHeight(35),
+          child: Image.asset(
+            'assets/Images/vegiwellname.png',
+            filterQuality: FilterQuality.high,
+            fit: BoxFit.contain,
+            color: Colors.white,
           ),
         ),
       ),
@@ -118,12 +123,23 @@ class HelpPage extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    Text(
-                      "Vegiwell",
-                      style: TextStyle(
-                        fontFamily: "Inter",
-                        fontSize: responsiveHeight(28),
-                        fontWeight: FontWeight.w800,
+                    // Text(
+                    //   "Vegiwell",
+                    //   style: TextStyle(
+                    //     fontFamily: "Inter",
+                    //     fontSize: responsiveHeight(28),
+                    //     fontWeight: FontWeight.w800,
+                    //   ),
+                    // ),
+                    SizedBox(
+                      width: responsiveHeight(170),
+                      height: responsiveHeight(45),
+                      child: Image.asset(
+                        'assets/Images/vegiwellname.png',
+                        filterQuality: FilterQuality.high,
+                        fit: BoxFit.contain,
+                        // color: Color.fromARGB(255, 20, 102, 23),
+                        // color: Colors.white,
                       ),
                     ),
                     SizedBox(

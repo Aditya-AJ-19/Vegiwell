@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vegiwell/Utils/size_config.dart';
+import 'package:vegiwell/Utils/style.dart';
 
 class OrdersPage extends StatelessWidget {
   const OrdersPage({super.key});
@@ -8,17 +9,20 @@ class OrdersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.orange,
-        title: Text(
-          "My Orders",
-          style: TextStyle(
-            fontFamily: "Inter",
-            fontSize: responsiveHeight(25),
-            fontWeight: FontWeight.bold,
+        elevation: 2,
+        backgroundColor: AppTheme.green,
+        foregroundColor: Colors.white,
+        centerTitle: true,
+        title: SizedBox(
+          width: responsiveHeight(140),
+          height: responsiveHeight(35),
+          child: Image.asset(
+            'assets/Images/vegiwellname.png',
+            filterQuality: FilterQuality.high,
+            fit: BoxFit.contain,
+            color: Colors.white,
           ),
         ),
-        centerTitle: true,
       ),
       body: const EmptyOrders(),
     );
@@ -98,8 +102,10 @@ class EmptyOrders extends StatelessWidget {
               height: responsiveHeight(60),
               width: responsiveWidth(200),
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                    colors: [Color(0xFFFCB930), Color(0xFFF16E35)]),
+                gradient: const LinearGradient(colors: [
+                  AppTheme.green,
+                  AppTheme.lightGreen,
+                ]),
                 borderRadius: BorderRadius.circular(responsiveHeight(15)),
               ),
               child: Center(

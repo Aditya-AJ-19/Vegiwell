@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vegiwell/Pages/checkout_detail.dart';
 import 'package:vegiwell/Utils/size_config.dart';
+import 'package:vegiwell/Utils/style.dart';
 import 'package:vegiwell/controllers/auth_controller.dart';
 import 'package:vegiwell/controllers/cart_controller.dart';
 
@@ -38,143 +39,147 @@ class _CartPageState extends State<CartPage> {
       backgroundColor: Colors.white10,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.black,
+        elevation: 2,
+        backgroundColor: AppTheme.green,
+        foregroundColor: AppTheme.darkBlue,
         centerTitle: true,
-        title: Text(
-          "Cart",
-          style: TextStyle(
-              fontSize: responsiveHeight(25),
-              fontWeight: FontWeight.bold,
-              fontFamily: "Inter"),
+        title: SizedBox(
+          width: responsiveHeight(140),
+          height: responsiveHeight(35),
+          child: Image.asset(
+            'assets/Images/vegiwellname.png',
+            filterQuality: FilterQuality.high,
+            fit: BoxFit.contain,
+            color: Colors.white,
+          ),
         ),
       ),
-      body: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: responsiveHeight(15)),
-            width: SizeConfig.screenWidth,
-            height: responsiveHeight(45),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon(
-                  Icons.shopping_cart_outlined,
-                  size: responsiveHeight(30),
-                ),
-                SizedBox(
-                  width: responsiveWidth(20),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Shopping Cart",
-                      style: TextStyle(
-                          height: responsiveHeight(1),
+      body: Padding(
+        padding: EdgeInsets.only(top: responsiveHeight(10)),
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: responsiveHeight(15)),
+              width: SizeConfig.screenWidth,
+              height: responsiveHeight(45),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.shopping_cart_outlined,
+                    size: responsiveHeight(30),
+                  ),
+                  SizedBox(
+                    width: responsiveWidth(20),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Shopping Cart",
+                        style: TextStyle(
+                            height: responsiveHeight(1),
+                            fontSize: responsiveHeight(20),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Inter"),
+                      ),
+                      Text(
+                        "Verify Your Quantity and Click Checkout",
+                        style: TextStyle(
+                          height: responsiveHeight(1.4),
+                          fontSize: responsiveHeight(13),
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black38,
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: PhoneAuthController.useralldata["cart"].length,
+                itemBuilder: (context, index) =>
+                    cartCard(PhoneAuthController.useralldata["cart"][index]),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(
+                top: responsiveHeight(10),
+                bottom: responsiveHeight(15),
+                left: responsiveHeight(20),
+                right: responsiveHeight(20),
+              ),
+              height: responsiveHeight(123),
+              width: SizeConfig.screenWidth,
+              color: Colors.white,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Total",
+                        style: TextStyle(
+                          fontFamily: "Inter",
                           fontSize: responsiveHeight(20),
                           fontWeight: FontWeight.bold,
-                          fontFamily: "Inter"),
-                    ),
-                    Text(
-                      "Verify Your Quantity and Click Checkout",
-                      style: TextStyle(
-                        height: responsiveHeight(1.4),
-                        fontSize: responsiveHeight(13),
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black38,
-                      ),
-                    )
-                  ],
-                )
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: responsiveHeight(15)),
-            height: responsiveHeight(450),
-            width: SizeConfig.screenWidth,
-            // color: Colors.blueAccent,
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              // itemCount: CartController().userModel.value.cart?.length ?? 0,
-              itemCount: PhoneAuthController.useralldata["cart"].length,
-              itemBuilder: (context, index) =>
-                  cartCard(PhoneAuthController.useralldata["cart"][index]),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(
-              top: responsiveHeight(10),
-              bottom: responsiveHeight(15),
-              left: responsiveHeight(20),
-              right: responsiveHeight(20),
-            ),
-            height: responsiveHeight(123),
-            width: SizeConfig.screenWidth,
-            color: Colors.white,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Total",
-                      style: TextStyle(
-                        fontFamily: "Inter",
-                        fontSize: responsiveHeight(20),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      // "Rs ${CartController().totalCartPrice.value}",
-                      "₹ $total",
-                      style: TextStyle(
-                        fontFamily: "Inter",
-                        fontSize: responsiveHeight(20),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Get.to(() => CheckOutDetails(
-                          cartItem:
-                              PhoneAuthController.useralldata["cart"] ?? [],
-                          total: total,
-                        ));
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    shape: const StadiumBorder(),
-                  ),
-                  child: Ink(
-                    decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Color(0xFFFCB930), Color(0xFFF16E35)],
                         ),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Container(
-                      width: responsiveWidth(320),
-                      height: responsiveHeight(50),
-                      alignment: Alignment.center,
-                      child: const Text(
-                        'Checkout',
+                      ),
+                      Text(
+                        // "Rs ${CartController().totalCartPrice.value}",
+                        "₹ $total",
                         style: TextStyle(
-                          fontSize: 24,
+                          fontFamily: "Inter",
+                          fontSize: responsiveHeight(20),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.to(() => CheckOutDetails(
+                            cartItem:
+                                PhoneAuthController.useralldata["cart"] ?? [],
+                            total: total,
+                          ));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      shape: const StadiumBorder(),
+                    ),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                          gradient:  const LinearGradient(
+                            colors: [
+                              AppTheme.green,
+                              AppTheme.lightGreen,
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Container(
+                        width: responsiveWidth(320),
+                        height: responsiveHeight(50),
+                        alignment: Alignment.center,
+                        child: const Text(
+                          'Checkout',
+                          style: TextStyle(
+                            fontSize: 24,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

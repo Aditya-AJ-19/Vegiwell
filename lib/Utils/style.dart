@@ -9,9 +9,13 @@ class AppTheme {
   static const Color darktext = Color(0xFF000000);
   static const Color graytext = Color(0xFF4F4F4F);
   static const Color lighttext = Color(0xFF8E8888);
-  static const Color background = Color(0xFFF1F1F1);
+  static const Color background = Color(0xFFEFF4F7);
+  // static const Color background = Color(0xFFF1F1F1);
   static const Color numberfield = Color(0xFFE0E0E0);
   static const Color bottomNavigationBar = Color(0xFFEDEDED);
+  static const Color green = Color(0xFF42C3A7);
+  static const Color lightGreen = Color(0xff7eedd5);
+  static const Color darkBlue = Color(0xFF182748);
 
   static final ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: AppTheme.background,

@@ -5,6 +5,7 @@ import 'package:vegiwell/Pages/getotp.dart';
 import 'package:vegiwell/Pages/help_page.dart';
 import 'package:vegiwell/Pages/orders_page.dart';
 import 'package:vegiwell/Utils/size_config.dart';
+import 'package:vegiwell/Utils/style.dart';
 import 'package:vegiwell/controllers/auth_controller.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -17,15 +18,18 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        elevation: 0,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        elevation: 2,
+        backgroundColor: AppTheme.green,
+        foregroundColor: AppTheme.darkBlue,
         centerTitle: true,
-        title: Text(
-          "My Account",
-          style: TextStyle(
-            fontSize: responsiveHeight(25),
-            fontWeight: FontWeight.bold,
+        title: SizedBox(
+          width: responsiveHeight(140),
+          height: responsiveHeight(35),
+          child: Image.asset(
+            'assets/Images/vegiwellname.png',
+            filterQuality: FilterQuality.high,
+            fit: BoxFit.contain,
+            color: Colors.white,
           ),
         ),
       ),
@@ -66,10 +70,15 @@ class ProfilePage extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          height: responsiveHeight(210),
+          height: responsiveHeight(180),
           decoration: const BoxDecoration(
-            gradient:
-                LinearGradient(colors: [Color(0xFFFCB930), Color(0xFFF16E35)]),
+            color: Colors.white
+            // gradient: LinearGradient(colors: [
+            //   // AppTheme.green,
+            //   // AppTheme.lightGreen,
+            //   Color(0xffcc5683),
+            //   Color(0xffbf0a4f),
+            // ]),
           ),
           padding: EdgeInsets.all(responsiveHeight(15)),
           child: Column(
@@ -135,7 +144,7 @@ class ProfilePage extends StatelessWidget {
                                 Icon(
                                   Icons.location_on,
                                   size: responsiveHeight(27),
-                                  color: Colors.orange,
+                                  color: AppTheme.green,
                                 ),
                                 SizedBox(
                                   width: responsiveWidth(6),
@@ -178,6 +187,11 @@ class ProfilePage extends StatelessWidget {
             ],
           ),
         ),
+        Divider(
+          height: 0,
+          color: Colors.grey.shade500,
+          thickness: responsiveHeight(1),
+        ),
         InkWell(
           onTap: () => Get.to(() => const OrdersPage()),
           child: card(
@@ -187,11 +201,11 @@ class ProfilePage extends StatelessWidget {
         ),
         Divider(
           height: 0,
-          color: Colors.black,
-          thickness: responsiveHeight(1.5),
+          color: Colors.grey.shade500,
+          thickness: responsiveHeight(1),
         ),
         InkWell(
-          onTap: () => Get.to(()=>const HelpPage()),
+          onTap: () => Get.to(() => const HelpPage()),
           child: card(
             "Help",
             Icons.help,
@@ -199,8 +213,8 @@ class ProfilePage extends StatelessWidget {
         ),
         Divider(
           height: 0,
-          color: Colors.black,
-          thickness: responsiveHeight(1.5),
+          color: Colors.grey.shade500,
+          thickness: responsiveHeight(1),
         ),
         SizedBox(
           height: responsiveHeight(40),
@@ -229,7 +243,8 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               cancel: Padding(
-                padding: EdgeInsets.only(right: responsiveHeight(8), bottom: responsiveHeight(15)),
+                padding: EdgeInsets.only(
+                    right: responsiveHeight(8), bottom: responsiveHeight(15)),
                 child: InkWell(
                   onTap: () {
                     Get.back();
@@ -283,8 +298,10 @@ class ProfilePage extends StatelessWidget {
               height: responsiveHeight(35),
               width: responsiveWidth(120),
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                    colors: [Color(0xFFFCB930), Color(0xFFF16E35)]),
+                gradient: const LinearGradient(colors: [
+                  AppTheme.green,
+                  AppTheme.lightGreen,
+                ]),
                 borderRadius: BorderRadius.circular(responsiveHeight(30)),
               ),
               child: Center(
