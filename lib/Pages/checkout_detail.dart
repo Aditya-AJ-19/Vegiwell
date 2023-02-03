@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:vegiwell/Utils/size_config.dart';
 import 'package:vegiwell/Utils/style.dart';
 import 'package:vegiwell/controllers/auth_controller.dart';
+import 'package:vegiwell/controllers/orders_controller.dart';
 
 class CheckOutDetails extends StatefulWidget {
   final List? cartItem;
@@ -18,6 +20,7 @@ class CheckOutDetails extends StatefulWidget {
 
 class _CheckOutDetailsState extends State<CheckOutDetails> {
   Map<String, dynamic> userdata = PhoneAuthController.useralldata;
+  final OrderController orderController = Get.find();
   String? paymentMethode;
 
   @override
@@ -197,7 +200,7 @@ class _CheckOutDetailsState extends State<CheckOutDetails> {
               child: Row(
                 children: [
                   Radio(
-                    value: "delivery",
+                    value: "payOnDelivery",
                     groupValue: paymentMethode,
                     onChanged: (value) {
                       setState(() {
@@ -249,7 +252,11 @@ class _CheckOutDetailsState extends State<CheckOutDetails> {
               height: responsiveHeight(30),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                if (paymentMethode == 'payOnDelivery') {
+                  orderController.orderProducts(widget.cartItem!, widget.total.toString());
+                }
+              },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.zero,
                 shape: const StadiumBorder(),

@@ -2,6 +2,7 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
+
 import 'package:vegiwell/Firebase%20Refrences/Home%20page%20reference/home_ref.dart';
 import 'package:vegiwell/Models/product_model.dart';
 import 'package:vegiwell/Pages/cartpage.dart';
@@ -398,7 +399,11 @@ Widget listCart(ProductData pd) {
 }
 
 class MainHomePage extends StatefulWidget {
-  const MainHomePage({Key? key}) : super(key: key);
+  final int? currIndex;
+  const MainHomePage({
+    Key? key,
+    this.currIndex,
+  }) : super(key: key);
 
   @override
   State<MainHomePage> createState() => _MainHomePageState();
@@ -407,6 +412,19 @@ class MainHomePage extends StatefulWidget {
 class _MainHomePageState extends State<MainHomePage> {
   static int _currentIndex = 0;
   // final PhoneAuthController loginController = Get.find();
+  @override
+  void initState() {
+    super.initState();
+    setIndex();
+  }
+
+  void setIndex(){
+    if (widget.currIndex != null) {
+      setState(() {
+        _currentIndex = widget.currIndex!;
+      });
+    }
+  }
   final screens = [
     HomePage(),
     const CartPage(),

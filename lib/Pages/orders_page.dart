@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:vegiwell/Utils/size_config.dart';
 import 'package:vegiwell/Utils/style.dart';
+import 'package:vegiwell/controllers/orders_controller.dart';
 
-class OrdersPage extends StatelessWidget {
+class OrdersPage extends StatefulWidget {
   const OrdersPage({super.key});
+
+  @override
+  State<OrdersPage> createState() => _OrdersPageState();
+}
+
+class _OrdersPageState extends State<OrdersPage> {
+  final OrderController orderController = Get.find();
+
+  // getProduct(List<OrderModel> pd) {
+  //   for (var e in pd) {
+  //     orderProducts.addAll(e.products!);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +40,134 @@ class OrdersPage extends StatelessWidget {
           ),
         ),
       ),
-      body: const EmptyOrders(),
+      body: StreamBuilder(
+        stream: orderController.getOrderproducts(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            if(snapshot.data!.isNotEmpty){
+              final pd = snapshot.data!;
+            print(pd[0].orderStatus);
+            List<Map<String, dynamic>> orderProducts = [];
+            for (var e in pd) {
+              orderProducts.addAll(e.products!);
+              // print(e.products!);
+            }
+
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: responsiveHeight(20))
+                  .copyWith(top: responsiveHeight(20)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Your Orders",
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: responsiveHeight(25),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: responsiveHeight(15),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: orderProducts.length,
+                      itemBuilder: (context, index) =>
+                          orderProduct(orderProducts[index]),
+                    ),
+                  ),
+                ],
+              ),
+            );
+            }
+            return const EmptyOrders();
+          } else{
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
     );
   }
+}
+
+// class OrderProducts extends StatelessWidget {
+//   const OrderProducts({
+//     Key? key,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final OrderController orderController = Get.find();
+//     return SafeArea(
+//         child: Padding(
+//       padding: EdgeInsets.symmetric(horizontal: responsiveHeight(20))
+//           .copyWith(top: 20),
+//       child:
+//     ));
+//   }
+// }
+
+Widget orderProduct(Map<String, dynamic> product) {
+  debugPrint(product['image'].toString());
+  return Padding(
+    padding: EdgeInsets.only(bottom: responsiveHeight(10)),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SizedBox(
+          height: responsiveHeight(110),
+          width: responsiveHeight(110),
+          child: Image.network(
+            product['image'],
+            fit: BoxFit.contain,
+          ),
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: 200,
+              child: Text(
+                product['productName'],
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: responsiveHeight(18),
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Text(
+              "Rs ${product['price']}",
+              style: const TextStyle(
+                fontFamily: 'Inter',
+                color: Colors.black45,
+              ),
+            ),
+            Text(
+              "Quantity: ${product['quantity']}",
+              style: const TextStyle(
+                fontFamily: 'Inter',
+                color: Colors.black45,
+              ),
+            ),
+            // Text(
+            //   "Order Status: $orderStatus",
+            //   style: const TextStyle(
+            //     fontFamily: 'Inter',
+            //     color: Colors.black45,
+            //   ),
+            // ),
+          ],
+        ),
+      ],
+    ),
+  );
 }
 
 class EmptyOrders extends StatelessWidget {

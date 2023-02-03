@@ -21,4 +21,13 @@ class ProductData {
       description: json['description'],
     );
   }
+
+  Map toJson() => {
+    id: id, 
+    name: name,
+    img: img, 
+    name: name,
+    price: price,
+    description: description,
+  };
 }

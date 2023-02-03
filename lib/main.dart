@@ -12,6 +12,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:vegiwell/controllers/auth_controller.dart';
 import 'package:vegiwell/controllers/carousel_controller.dart';
 import 'package:vegiwell/controllers/cart_controller.dart';
+import 'package:vegiwell/controllers/orders_controller.dart';
 
 // import 'Firebase Refrences/Home page reference/home_ref.dart';
 
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
   final phoneAuthController = Get.put(PhoneAuthController());
   final carouselController = Get.put(CarouselController());
   final cartController = Get.put(CartController());
+  final orderController = Get.put(OrderController());
 
   @override
   Widget build(BuildContext context) {
