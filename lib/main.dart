@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vegiwell/Pages/Home%20Page/homepage.dart';
 import 'package:vegiwell/Pages/getotp.dart';
+import 'package:vegiwell/Pages/msgorder.dart';
 import 'package:vegiwell/Utils/size_config.dart';
 import 'package:vegiwell/Utils/style.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';

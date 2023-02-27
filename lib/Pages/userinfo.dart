@@ -229,8 +229,10 @@ class UserInfoPage extends StatelessWidget {
                 },
                 child: Ink(
                   decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                          colors: [Color(0xFFFCB930), Color(0xFFF16E35)]),
+                      gradient: const LinearGradient(colors: [
+                        AppTheme.green,
+                        AppTheme.lightGreen,
+                      ]),
                       borderRadius: BorderRadius.circular(20)),
                   child: Container(
                     width: responsiveWidth(320),
