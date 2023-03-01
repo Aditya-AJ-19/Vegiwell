@@ -5,9 +5,11 @@ import 'package:vegiwell/Models/order_model.dart';
 // import 'package:vegiwell/Models/product_model.dart';
 import 'package:vegiwell/Pages/order_successful.dart';
 import 'package:vegiwell/controllers/auth_controller.dart';
+import 'package:uuid/uuid.dart';
 
 class OrderController extends GetxController {
   void orderProducts(List cartItem, String totalPrice) async {
+    var uuid = const Uuid();
     Map<String, dynamic> userdata = PhoneAuthController.useralldata;
     List<Map<String, dynamic>> productList = [];
     for (var product in cartItem) {
@@ -19,20 +21,21 @@ class OrderController extends GetxController {
       };
       productList.add(pd);
     }
-    debugPrint(productList.toString());
+    var orderId = uuid.v1();
     OrderModel order = OrderModel(
+      id: orderId,
       name: userdata['username'],
       userlastname: userdata['userlastname'],
       number: userdata['number'],
       address: userdata['address'],
       products: productList,
-      orderStatus: "order recived",
+      orderStatus: "Pending",
       totalPrice: totalPrice,
     );
     try {
       await FirebaseFirestore.instance
           .collection('orders')
-          .doc()
+          .doc(orderId)
           .set(order.toMap());
     } catch (e) {
       return debugPrint(e.toString());
@@ -47,11 +50,28 @@ class OrderController extends GetxController {
   Stream<List<OrderModel>> getOrderproducts() {
     Map<String, dynamic> userdata = PhoneAuthController.useralldata;
     return FirebaseFirestore.instance
-      .collection('orders')
-      .where('number', isEqualTo: userdata['number'])
-      .snapshots().map((snapshot) => snapshot.docs.map((e) => OrderModel().fromMap(e.data())).toList());
+        .collection('orders')
+        .where('number', isEqualTo: userdata['number'])
+        .snapshots()
+        .map((snapshot) =>
+            snapshot.docs.map((e) => OrderModel().fromMap(e.data())).toList());
   }
 
+  //Update order status(Cancel order).
+
+  void cancelOrder(String orderId) {
+    FirebaseFirestore.instance
+        .collection('orders')
+        .doc(orderId)
+        .update({'orderStatus': "Order Cancel"});
+  }
+
+  // delete order.
+  void deleteOrder(String orderId) {
+    FirebaseFirestore.instance.collection("orders").doc(orderId).delete();
+  }
+
+  
   // Future<OrderModel> getOrderproducts() async {
   //   Map<String, dynamic> userdata = PhoneAuthController.useralldata;
   //   List<Map<String, dynamic>> orderProducts = [];

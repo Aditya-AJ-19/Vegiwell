@@ -58,10 +58,11 @@ dev_dependencies:
 #       path: cached_network_image
 #       ref: ff72f00f142f13d889d7549e013af91cb0b523ab
 flutter_native_splash:
-  color: "#05EB8B"
+  image: assets/Images/vegiwellname.png
+  color: "#42C3A7"
 
   android_12:
-    icon_background_color: "#05EB8B"
+    icon_background_color: "#42C3A7"
 
   web: false
 

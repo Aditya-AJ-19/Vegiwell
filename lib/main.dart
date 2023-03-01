@@ -60,7 +60,7 @@ class SplashScreen extends StatelessWidget {
       splash: Column(
         children: [
           Image.asset(
-            "assets/Images/vegiwelllogo.png",
+            "assets/Images/vegiwellname.png",
             width: responsiveHeight(180),
             height: responsiveHeight(180),
           ),

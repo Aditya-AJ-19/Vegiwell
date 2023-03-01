@@ -139,7 +139,6 @@ class _EnterOtpState extends State<EnterOtp> {
                               animationDuration:
                                   const Duration(milliseconds: 300),
                               backgroundColor: Colors.grey[300],
-                              
                               onChanged: (value) {
                                 setState(() {
                                   otpPin = value;
@@ -190,7 +189,9 @@ class _EnterOtpState extends State<EnterOtp> {
                     borderRadius: BorderRadius.circular(responsiveHeight(30))),
                 child: ElevatedButton(
                   onPressed: () {
-                    loginController.verifyOtp(otpPin, UserInfoPage());
+                    if (otpPin.isNotEmpty && otpPin.length == 6) {
+                      loginController.verifyOtp(otpPin, UserInfoPage());
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.zero,
@@ -199,7 +200,9 @@ class _EnterOtpState extends State<EnterOtp> {
                   child: Ink(
                     decoration: BoxDecoration(
                         gradient: const LinearGradient(
-                            colors: [Color(0xFFFCB930), Color(0xFFF16E35)]),
+                          colors: [AppTheme.green,
+                    AppTheme.lightGreen,],
+                        ),
                         borderRadius: BorderRadius.circular(20)),
                     child: Container(
                       width: responsiveWidth(320),
